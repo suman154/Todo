@@ -19,11 +19,13 @@ from django.urls import path
 from base.views import home
 from base.views import create
 from base.views import edit
+from base.views import delete
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', home, name='home'),
     path('create/', create, name='create'),
-    path('edit/<int:pk>/', edit, name='edit')
+    path('edit/<int:pk>/', edit, name='edit'),
+    path('delete/<int:pk>/', delete, name='delete')
 
 ]

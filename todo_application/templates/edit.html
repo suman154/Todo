@@ -12,19 +12,32 @@
         {% csrf_token %}
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control" name="name" id="name">
+          <input type="text" class="form-control" id="name" value="{{todos.name}}" name="name">
         </div>
         <div class="mb-3">
             <label for="floatingTextarea">Description</label>
-            <textarea class="form-control" name="description" id="description"></textarea>
+            <textarea class="form-control" name="description" id="description"> {{todos.descrription}}</textarea>
         </div>
         <div class="mb-3">
           <label for="description" class="form-label">Status</label>
           <select class="form-select" name="status" id="Status">
-            <option selected>Open this select menu</option>
-            <option value="Done">Done</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Not Done">Not Done</option>
+            {% if todos.status == 'Done' %}
+              <option selected value="Done">Done</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Not Done">Not Done</option>
+              
+            {% elif todos.status == 'In Progress' %}
+              <option value="Done">Done</option>
+              <option selected value="In Progress">In Progress</option>
+              <option value="Not Done">Not Done</option>
+
+            {% elif todos.status == 'Not Done' %}
+              <option value="Done">Done</option>
+              <option value="In Progress">In Progress</option>
+              <option selected value="Not Done">Not Done</option>
+            {% endif %}
+
+            
           </select>        
         </div>
         <div class="mb-3 form-check">
